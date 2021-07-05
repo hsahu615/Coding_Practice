@@ -18,7 +18,7 @@ void toBit(int n){
 
 int main(){
 
-    int n = 6;
+    int n = 7;
     toBit(n);
 
 

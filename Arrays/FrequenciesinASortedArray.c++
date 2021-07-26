@@ -3,6 +3,8 @@
 
 using namespace std;
 
+
+// Efficient Solution O(n)
 void freqs(int arr[], int n)
 { 
   int count=0;

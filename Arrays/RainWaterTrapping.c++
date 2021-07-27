@@ -1,6 +1,28 @@
 #include<iostream>
 using namespace std;
 
+// Naive Approach: O(N^2)
+// int trapWater(int arr[], int n){
+//   int res = 0;
+//   for(int i=1;i<n;i++){
+//     int left_max = arr[i];
+//     for(int j=0;j<i;j++){
+//       if(arr[j]>left_max){
+//         left_max = arr[j];
+//       }
+//     }
+//     int right_max = arr[i];
+//     for(int j=i+1;j<n;j++){
+//       if(arr[j]>right_max){
+//         right_max = arr[j];
+//       }
+//     }
+//     res += min(left_max, right_max) - arr[i];
+//   }
+//   return res;
+// } 
+
+// Efficient Approach: O(N)
 int trappingWater(int arr[], int n)
 {
   int left[n];
@@ -27,8 +49,9 @@ int trappingWater(int arr[], int n)
 }
 
 int main(){
-  int arr[] = {7,4,0,9};
+  int arr[] = {3,0,2,1,5};
   int n = sizeof(arr)/sizeof(arr[0]);
-  cout << trappingWater(arr, n);
+  cout << trappingWater(arr, n)<< endl;
+  cout << trapWater(arr, n);
   
 }

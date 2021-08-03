@@ -34,7 +34,7 @@ void flips(int arr[], int n){
   cout << zeros.size() << " ";
 
 
-
+  
 }
 
 int main(){

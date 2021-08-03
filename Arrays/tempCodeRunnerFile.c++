@@ -1,1 +1,2 @@
-int
+Naive Approach 
+// Two Traversal

@@ -30,54 +30,50 @@ using namespace std;
 
 
 // Efficient Approach
-int maxOf(int arr[], int n){
-  int max1 = arr[0];
-  for(int i=1;i<n;i++){
-    max1 = max(max1, arr[i]);
-  }
-  return max1;
-}
-int minOf(int arr[], int n){
-  int min1 = arr[0];
-  for(int i=1;i<n;i++){
-    min1 = min(min1, arr[i]);
-  }
-  return min1;
-}
 
-int isFeasible(int arr[], int k, int mid, int n){
-  int sum=0, student = 1;
+bool isPossible(int arr[], int k, int mid, int n){
+  int sum = 0, student=1;
   for(int i=0;i<n;i++){
-    if(sum+arr[i]>mid){
+    if(arr[i]>mid){
+      return false;
+    }
+    if((arr[i]+sum)>mid){
       student++;
-      sum = arr[i];
+      sum=arr[i];
     }
     else{
       sum+=arr[i];
     }
+    if(student>k){
+      return false;
+    }
   }
-  return student<=k;
-}
-int pages(int arr[], int k, int n){
-  int max1 = maxOf(arr, n);
-  int min1 = minOf(arr, n);
-  int res = 0;
-  while(min1<=max1){
-    int mid = (min1+max1)/2;
-    if(isFeasible(arr, k, mid, n)){
-      res = mid;
-      max1 = mid-1;
-    }
-    else{
-      min1 = mid+1;
-    }
-  }  
-  return res;
+  return true;
 }
 
+int pages(int arr[], int k, int n){
+  int maxi=arr[0], mini = arr[0];
+  for(int i=0;i<n;i++){
+    maxi +=arr[i];
+    mini = min(mini, arr[i]);
+  }
+  int res = 0;
+  while(mini<=maxi){
+    int mid = (mini+maxi)/2;
+    if(isPossible(arr, k, mid, n)){
+      res = mid;
+      maxi = mid-1;
+    }
+    else{
+      mini = mid+1;
+    }
+  }
+  return res;
+}
 int main(){
-  int arr[] = {10,20,30,40};
+  int arr[] = {12, 34, 67, 90};
   int k = 2;
-  int n = sizeof(arr)/sizeof(arr[0]);
+  // int n = sizeof(arr)/sizeof(arr[0]);
+  int n = 4;
   cout << pages(arr, k, n);
 }

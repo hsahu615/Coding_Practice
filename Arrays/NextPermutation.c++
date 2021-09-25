@@ -29,7 +29,7 @@ void nextPermutation(vector<int> &nums)
   if (i < 0)
   {
     reverse(nums.begin(), nums.end());
-  }
+  }	
   else
   {
     for (j = n - 1; j >= 0; j--)
